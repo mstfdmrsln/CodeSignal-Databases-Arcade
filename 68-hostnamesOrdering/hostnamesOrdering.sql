@@ -1,0 +1,8 @@
+CREATE PROCEDURE hostnamesOrdering()
+BEGIN
+	SELECT id, hostname AS hostname
+	FROM hostnames
+	ORDER BY SUBSTRING_INDEX(hostname, '.', -1),
+	SUBSTRING_INDEX(CONCAT('                    .', hostname), '.', -2),
+	2;
+END
